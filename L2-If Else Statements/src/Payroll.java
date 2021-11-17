@@ -43,6 +43,8 @@ public class Payroll {
     }
 
     public static double input(String prompt){
+
+
         return Double.parseDouble(JOptionPane.showInputDialog(prompt));
     }
 
