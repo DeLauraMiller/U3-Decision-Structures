@@ -14,37 +14,34 @@ public class QuizGame {
 
         System.out.println(displayProblem);
         System.out.println(correctAnswer);
-
-
-
+    }
     public static void createProblem(int choice) {
-            if(choice >= 1){;
-                if(choice<5){
-                    if(choice ==1){
-                        add();
-                    }
-                    if (choice == 2){
-                        sub();
-                    }
-                    if(choice == 3){
-                        mult();
-                    }
-                    if(choice==4){
-                        div();
-                    }
-                }else {System.out.println("Wrong input, restart program, try again");
-                    System.exit(0);
+        if(choice >= 1){;
+            if(choice<5){
+                if(choice ==1){
+                    add();
                 }
-
-            }else{
-                System.out.println("Wrong input, restart program, try again");
+                if (choice == 2){
+                    sub();
+                }
+                if(choice == 3){
+                    mult();
+                }
+                if(choice==4){
+                    div();
+                }
+            }else {System.out.println("Wrong input, restart program, try again");
                 System.exit(0);
             }
 
-
-            System.out.println(displayProblem);
-            System.out.println(correctAnswer);
+        }else{
+            System.out.println("Wrong input, restart program, try again");
+            System.exit(0);
         }
+
+
+        System.out.println(displayProblem);
+        System.out.println(correctAnswer);
     }
     public static void add(){
         int num1 = random();
