@@ -8,13 +8,26 @@ public class QuizGame {
 
     public static void main(String[] args) {
 
-        int choice = input ("Choose addition(1), Subtraction(2), Multiplication(3), Division(4)");
+        int choice = input ("Choose Addition(1), Subtraction(2), Multiplication(3), Division(4)");
 
         createProblem(choice);
+        getUserAnswer();
+        checkAnswer();
 
-        System.out.println(displayProblem);
-        System.out.println(correctAnswer);
     }
+    public static void checkAnswer(){
+        if(userAnswer == correctAnswer){
+            JOptionPane.showMessageDialog(null,"You are correct!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Incorrect, please try again.");
+        }
+    }
+
+    public static void getUserAnswer() {
+        userAnswer = input(displayProblem);
+
+    }
+
     public static void createProblem(int choice) {
         if(choice >= 1){;
             if(choice<5){
@@ -38,11 +51,8 @@ public class QuizGame {
             System.out.println("Wrong input, restart program, try again");
             System.exit(0);
         }
-
-
-        System.out.println(displayProblem);
-        System.out.println(correctAnswer);
     }
+
     public static void add(){
         int num1 = random();
         int num2 = random();
@@ -58,6 +68,7 @@ public class QuizGame {
         correctAnswer = num1 - num2;
         displayProblem = num1 + " - " + num2;
     }
+
     public static void mult(){
         int num1 = random();
         int num2 = random();
@@ -65,6 +76,7 @@ public class QuizGame {
         correctAnswer = num1 * num2;
         displayProblem = num1 + " X " + num2;
     }
+
     public static void div(){
         int num1 = random();
         int num2 = random();
@@ -77,6 +89,7 @@ public class QuizGame {
         Random random = new Random();
         return random.nextInt(20)+1;
     }
+
     public static int input(String message){
         return Integer.parseInt(JOptionPane.showInputDialog(message));
     }
