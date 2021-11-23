@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
 
@@ -6,12 +8,12 @@ public class QuizGame {
     static double userAnswer, correctAnswer;
     static String displayProblem = "";
 
-    JPanel panel;
-    JButton createProblem, checkAnswer;
-    JLabel showProblem, resultLabel;
-    JTextField answerInput;
-    JRadioButton addition, subtraction, multiplication, division;
-    ButtonGroup radios = new ButtonGroup();
+    static JPanel panel;
+    static JButton createProblem, checkAnswer;
+    static JLabel showProblem, resultLabel;
+    static JTextField answerInput;
+    static JRadioButton addition, subtraction, multiplication, division;
+    static ButtonGroup radios = new ButtonGroup();
 
 
 
@@ -40,16 +42,27 @@ public class QuizGame {
         division = new JRadioButton("Division");
 
 
-        createProblem = new JButton("Make a Problem!");
-        showProblem = new JLabel(" PLACE HOLDER");
+        createProblem = new JButton("Gimme One!");
+        showProblem = new JLabel("Sum gone go here");
         answerInput = new JTextField(10);
-        checkAnswer = new JButton("CHECK ANSWER");
-        resultLabel = new JLabel(" Answer RESULTS");
+        checkAnswer = new JButton("What it Is?");
+        resultLabel = new JLabel(" ANSWER RESULTS");
 
-        addition.setBounds(20,25,200,25);
-        subtraction.setBounds(20,50,200,25);
-        multiplication.setBounds(20,75,200,25);
-        division.setBounds(20,100,200,25);
+        addition.setBounds(100,25,200,25);
+        subtraction.setBounds(100,50,200,25);
+        multiplication.setBounds(100,75,200,25);
+        division.setBounds(100,100,200,25);
+
+        createProblem.setBounds(50,125,200,25);
+        showProblem.setBounds(50,150,200,25);
+        answerInput.setBounds(50,175,200,25);
+        checkAnswer.setBounds(50,200,200,25);
+        resultLabel.setBounds(50,225,200,25);
+
+        addition.setSelected(true);
+
+        createProblem.addActionListener(new NewProblemButton());
+        checkAnswer.addActionListener(new CheckProblemListener());
 
         radios.add(addition);
         radios.add(subtraction);
@@ -62,20 +75,56 @@ public class QuizGame {
         panel.add(multiplication);
         panel.add(division);
 
+        panel.add(createProblem);
+        panel.add(showProblem);
+        panel.add(answerInput);
+        panel.add(checkAnswer);
+        panel.add(resultLabel);
+
         frame.add(panel);
         frame.setVisible(true);
 
     }
+    private class NewProblemButton implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent){
+            if(addition.isSelected()){
+                add();
+            }
+            if(subtraction.isSelected()){
+                sub();
+            }
+            if(multiplication.isSelected()){
+                mult();
+            }
+            if(division.isSelected()){
+                div();
+            }
+            showProblem.setText(displayProblem);
+
+            panel.remove(createProblem);
+            panel.updateUI();
+        }
+    }
+    private class CheckProblemListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent actionEvent){
+            getUserAnswer();
+            checkAnswer();
+        }
+    }
     public static void checkAnswer(){
         if(userAnswer == correctAnswer){
-            JOptionPane.showMessageDialog(null,"You are correct!");
+            resultLabel.setText("You are correct!");
+            panel.add(createProblem);
+            panel.updateUI();
         }else{
-            JOptionPane.showMessageDialog(null, "Incorrect, please try again.");
+            resultLabel.setText("Incorrect, please try again.");
         }
     }
 
     public static void getUserAnswer() {
-        userAnswer = input(displayProblem);
+        userAnswer = Double.parseDouble(answerInput.getText());
 
     }
 
