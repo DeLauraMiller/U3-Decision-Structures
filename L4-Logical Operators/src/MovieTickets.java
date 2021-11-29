@@ -1,4 +1,4 @@
-/*public class MovieTickets {
+public class MovieTickets {
 
     /*
     The local Movie Theater has the following price structure:
@@ -12,9 +12,11 @@
 
     Create a program that will allow a user to enter the number of child, adult, and senior citizen tickets, the day
     and the time of their movie and accurately display the total ticket cost.
+*/
 
-
-     */
+        public static void main(String[]args){
+        }
+}
 
 
 
